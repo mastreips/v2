@@ -58,6 +58,19 @@ filter by "test" to see images
 1567960991: Sending PUBLISH to local.7f6ddfcca007.hw3_mosquitto_bridge (d0, q0, r0, m0, 'image', ... (8541 bytes))
 ```
 
+## Forwarder log
+```
+1567975709: mosquitto version 1.4.15 (build date Tue, 18 Jun 2019 11:42:22 -0300) starting
+1567975709: Using default config.
+1567975709: Opening ipv4 listen socket on port 1883.
+1567975709: Opening ipv6 listen socket on port 1883.
+1567975733: New connection from 75.190.38.102 on port 1883.
+1567975733: New client connected from 75.190.38.102 as forwadrer_remote (c1, k60).
+1567975733: Sending CONNACK to forwadrer_remote (0, 0)
+1567975779: Received PUBLISH from forwadrer_remote (d0, q1, r0, m1, 'image', ... (8004 bytes))
+1567975779: Sending PUBACK to forwadrer_remote (Mid: 1)
+```
+
 ## Cloud Docker Commands
 `docker run -it --name img_proc --privileged ubuntu   (needed to mount fuse disk by docker container "ubuntu")`
 
