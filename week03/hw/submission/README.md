@@ -32,6 +32,11 @@ https://cloud.ibm.com/objectstorage/crn%3Av1%3Abluemix%3Apublic%3Acloud-object-s
 filter by "test" to see images
 
 ## Overview
+The purpose of this projet to to use mqtt and docker to capture facial images and send messages through brokers to on IBM Cloud Object Storage (COS) bucket. 
+
+Two different approaches for linking Jetson to the Cloud were explored.  The first approach used the Jetson mosquitto broker as a bridge to the cloud broker.  The second approach used the paho-mqtt wrapper as a forwarder.  
+
+Two different approaches for storing the images where explored. The first approach connected the docker image to an s3fs-fuse object storage drive and wrote to the drive using standard python IO commands.  The second approach used the ibm3_boto library to connect to COS through API endpoints.  Only the second approach resulted in a UI with updated objects and is accessible using the link above. 
 
 ### Topics - 
 
