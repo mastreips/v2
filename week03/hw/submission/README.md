@@ -24,4 +24,11 @@ Also, explan the naming of the MQTT topics and the QoS that you used.
 - image_examples/test2_92.jpg (screencap of video displayed during face capture)
 - image_examples/test2_161.jpg (screencap of clipped, gray scale image obtained from face detection service)
 
+## Link to COS Bucket
+
+- Link to Bucket (mastreipsbucket1)
+https://cloud.ibm.com/objectstorage/crn%3Av1%3Abluemix%3Apublic%3Acloud-object-storage%3Aglobal%3Aa%2F42fc791bbc1f45c4bf6747a763dc4206%3A5ebcf782-1986-4370-9079-11ea8b762910%3A%3A?bucket=mastreipsbucket1&bucketRegion=us-east&endpoint=s3.us-east.cloud-object-storage.appdomain.cloud&paneId=bucket_overview
+
+filter by "test" to see images
+
 
