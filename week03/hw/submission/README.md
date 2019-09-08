@@ -15,6 +15,7 @@ Also, explan the naming of the MQTT topics and the QoS that you used.
 
 ### Jestson - Face Detetion Service
 - face_detector/vid_cap_test5.py  (face detection and clipping service connected to mqtt broker)
+- face_detector/test_4.py   (testing script for sending a single message to the broker). 
 
 ### Jetson - Forwarder Service
 - forwarder/mosquitto.conf (configuration file for mosquitto bridge)
