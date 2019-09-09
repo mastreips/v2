@@ -1,6 +1,7 @@
 '''
 Sources:
 (1) cloud.ibm.com/docs/services/cloud-object-storage
+(2) http://stackoverflow.com/questions/37499739/how-can-i-send-a-image-by-using-mosquitto
 
 Author: Marcus A. Streips
 
