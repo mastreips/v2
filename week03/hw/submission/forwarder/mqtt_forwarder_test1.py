@@ -1,3 +1,8 @@
+'''
+Sources:
+(1) http://www.steves-internet-guide.com/client-connections-python-mqtt/
+'''
+
 import paho.mqtt.client as mqtt
 
 # keeping track of the IP of the MQTT brokers
