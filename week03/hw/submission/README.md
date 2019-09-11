@@ -26,8 +26,9 @@ Also, explan the naming of the MQTT topics and the QoS that you used.
 - forwarder/mqtt_forwarder_test1.py (forwarding service that subscribes to local broker and publishes to remote broker)
 
 ### Miscellaneous
-- image_examples/test2_92.jpg (screencap of video displayed during face capture)
-- image_examples/test2_161.jpg (screencap of clipped, gray scale image obtained from face detection service)
+- hw3_bucket_screencap.png      (screencap of IBM CoS bucket instance with written mqtt messages)
+- image_examples/test2_92.jpg   (screencap of video displayed during face capture)
+- image_examples/test2_161.jpg  (screencap of clipped, gray scale image obtained from face detection service)
 
 ## Link to COS Bucket
 
