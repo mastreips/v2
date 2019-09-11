@@ -9,6 +9,10 @@ Also, explan the naming of the MQTT topics and the QoS that you used.
 
 ## Submitted Files
 
+### Docker Files
+- dockerfile 1 (explain)
+- dockerfile 2 (explain)
+
 ### Cloud Services
 - cloud COS/mqtt_sub_test1.py   (subscription routing that writes to s3fs-fuse mounted object storage)
 - cloud COS/mqtt_sub_test4.py   (subscription routing that writes to ibm COS using ibm3_boto library)
