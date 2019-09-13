@@ -5,7 +5,7 @@ FROM alpine
 # on the host:
 # make sure you're in the X environment
 # xhost + 
-# docker run --rm --privileged -ti mosquitto-cloud bash
+# docker run --rm --privileged -ti mosquitto-cloud sh
 
 RUN apt update
 
