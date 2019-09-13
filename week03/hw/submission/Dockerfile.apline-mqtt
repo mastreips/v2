@@ -1,0 +1,17 @@
+FROM alpine
+
+# build this: e.g docker build -t mqtt -f Dockerfile.alpine-mqtt
+# to run this container, do:
+# on the host:
+# make sure you're in the X environment
+# xhost + 
+# docker run --rm --privileged -ti mosquitto-cloud bash
+
+RUN apt update
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apk add -y python-pip nano mosquitto mosquitto-clients
+RUN apk add paho-mqtt
+
+WORKDIR /
