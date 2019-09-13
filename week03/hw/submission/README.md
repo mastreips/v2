@@ -10,8 +10,8 @@ Also, explan the naming of the MQTT topics and the QoS that you used.
 ## Submitted Files
 
 ### Docker Files
-- dockerfile 1 (explain)
-- dockerfile 2 (explain)
+- Dockerfile.alpine-mqtt        (docker build with nano, mosquitto and paho-mqtt installed)
+- dockerfile.ubuntu-mqtt-opencv (docker build with nano, mosquitto, paho-mqtt and python-opencv installed)
 
 ### Cloud Services
 - cloud COS/mqtt_sub_test1.py   (subscription routing that writes to s3fs-fuse mounted object storage)
@@ -85,8 +85,9 @@ Two different approaches for storing the images where explored. The first approa
 ```
 
 ## Cloud Docker Commands
-`docker run -it --name img_proc --privileged ubuntu   (needed to mount fuse disk by docker container "ubuntu")`
-`docker run -it --name mosquitto-cloud -p1883:1883    (needed to expose docker mqtt port to VM port)`
+`docker run -it --name img_proc --privileged ubuntu bash (needed to mount fuse disk by docker container "ubuntu")`
+
+`docker run -it --name mosquitto-cloud -p1883:1883 sh   (needed to expose docker mqtt port to VM port)`
 
 ## Jestson Docker Commands
 `docker run -it --rm --net=hw03 --runtime nvidia -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix --device=/dev/video1 --name face_detector_2 w251/cuda:dev-tx2-4.2.1_b97 (needed to access display by docker container)`
