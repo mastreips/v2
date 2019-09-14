@@ -16,10 +16,189 @@ Once you hit this page, the network starts running.
 In this lab, we will look at the processing of the MNIST data set using ConvnetJS.  This demo uses this page: http://cs.stanford.edu/people/karpathy/convnetjs/demo/mnist.html
 The MNIST data set consists of 28x28 black and white images of hand written digits and the goal is to correctly classify them.  Once you load the page, the network starts running and you can see the loss and predictions change in real time.  Try the following:
 * Name all the layers in parameters in the network, make sure you understand what they do.
+
+- **input layer** : holds the vectorized pixel values of the image
+- **convolutional layer** : stores the dot product of a sliding filter and the input matirx resulting in neuron outputs connected to local regions of the input (edges or blotches of color).  
+- **relu layer (activiation layer)** - performs a fixed mathematical transformation f(x) = max(0,x) to introduce non-linearty in the model. 
+- **pooling layer** - downsampling layer that reduces the spacial size of the model (reduces paramaters) to prevent overfitting.
+- **fully connected (fc) layer** - combines the weights and interactions of the previous layers into outputs corresponding to classes in a classification problem.  Each node is connected to every node in the previous layer. 
+- **softmax layer** - converts output to be within the range (0:1) allowing the output to be interprested as a probability (confidence score). 
+
 * Experiment with the number  and size of filters in each layer.  Does it improve the accuracy?
+
+**Baseline**: Training Accuracy: 0.95-0.99 / Validation Accuracy: 0.92-0.95
+```
+layer_defs = [];
+layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
+layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:2, stride:2});
+layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:3, stride:3});
+layer_defs.push({type:'softmax', num_classes:10});
+
+net = new convnetjs.Net();
+net.makeLayers(layer_defs);
+
+trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
+```
+
+Classification loss: 0.23719
+L2 Weight decay loss: 0.00204
+Training accuracy: 0.93
+Validation accuracy: 0.91
+Examples seen: 10000
+Learning rate: 
+0.01
+ 
+Momentum: 
+0.9
+ 
+Batch size: 
+20
+ 
+Weight decay: 
+0.001
+ 
+
+**Filter number: 
+
+```
+layer_defs = [];
+layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
+layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'}); #changed filters to 16
+layer_defs.push({type:'pool', sx:2, stride:2});
+layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:3, stride:3});
+layer_defs.push({type:'softmax', num_classes:10});
+
+net = new convnetjs.Net();
+net.makeLayers(layer_defs);
+
+trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
+```
+Classification loss: 0.10118
+L2 Weight decay loss: 0.00222
+Training accuracy: 0.97
+Validation accuracy: 0.85
+Examples seen: 5000
+
+```
+layer_defs = [];
+layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
+layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:2, stride:2});
+layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'}); #changed filters to 8
+layer_defs.push({type:'pool', sx:3, stride:3});
+layer_defs.push({type:'softmax', num_classes:10});
+
+net = new convnetjs.Net();
+net.makeLayers(layer_defs);
+
+trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
+```
+Classification loss: 0.18494
+L2 Weight decay loss: 0.00138
+Training accuracy: 0.95
+Validation accuracy: 0.85
+Examples seen: 5000
+
+
+**Filter Size**
+
+```
+layer_defs = [];
+layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
+layer_defs.push({type:'conv', sx:10, filters:8, stride:1, pad:2, activation:'relu'}); #changes sx to 10
+layer_defs.push({type:'pool', sx:2, stride:2});
+layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:3, stride:3});
+layer_defs.push({type:'softmax', num_classes:10});
+
+net = new convnetjs.Net();
+net.makeLayers(layer_defs);
+
+trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
+
+```
+Classification loss: 0.21288
+L2 Weight decay loss: 0.0018
+Training accuracy: 0.92
+Validation accuracy: 0.86
+Examples seen: 5000
+
+```
+layer_defs = [];
+layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
+layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:2, stride:2});
+layer_defs.push({type:'conv', sx:3, filters:16, stride:1, pad:2, activation:'relu'}); #change sx to 3
+layer_defs.push({type:'pool', sx:3, stride:3});
+layer_defs.push({type:'softmax', num_classes:10});
+
+net = new convnetjs.Net();
+net.makeLayers(layer_defs);
+
+trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
+```
+Classification loss: 0.15546
+L2 Weight decay loss: 0.0018
+Training accuracy: 0.95
+Validation accuracy: 0.81
+Examples seen: 5000
+
+
 * Remove the pooling layers.  Does it impact the accuracy?
+
+```
+layer_defs = [];
+layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
+layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'softmax', num_classes:10});
+
+net = new convnetjs.Net();
+net.makeLayers(layer_defs);
+
+trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
+```
+Classification loss: 0.18351
+L2 Weight decay loss: 0.00248
+Training accuracy: 0.94
+Validation accuracy: 0.89
+Examples seen: 5002
+
 * Add one more conv layer.  Does it help with accuracy?
+
+```
+layer_defs = [];
+layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
+layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:2, stride:2});
+layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:3, stride:3});
+ayer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'}); ## added one more conv layer. 
+layer_defs.push({type:'softmax', num_classes:10});
+
+net = new convnetjs.Net();
+net.makeLayers(layer_defs);
+
+trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
+```
+Classification loss: 0.20302
+L2 Weight decay loss: 0.00182
+Training accuracy: 0.94
+Validation accuracy: 0.9
+Examples seen: 5000
+
 * Increase the batch size.  What impact does it have?
+
+Batch size: 100
+Classification loss: 0.40773
+L2 Weight decay loss: 0.00026
+Training accuracy: 0.9
+Validation accuracy: 0.79
+Examples seen: 5036
+
 * What is the best accuracy you can achieve? Are you over 99%? 99.5%?
 
 #### 3. Build your own model in Keras
