@@ -42,22 +42,15 @@ net.makeLayers(layer_defs);
 trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 ```
 
-Classification loss: 0.23719
-L2 Weight decay loss: 0.00204
-Training accuracy: 0.93
-Validation accuracy: 0.91
-Examples seen: 10000
-Learning rate: 
-0.01
- 
-Momentum: 
-0.9
- 
-Batch size: 
-20
- 
-Weight decay: 
-0.001
+- Classification loss: 0.23719
+- L2 Weight decay loss: 0.00204
+- Training accuracy: 0.93
+- Validation accuracy: 0.91
+- Examples seen: 10000
+- Learning rate: 0.01
+- Momentum: 0.9
+- Batch size: 20
+- Weight decay: 0.001
  
 
 **Filter number: 
@@ -76,11 +69,11 @@ net.makeLayers(layer_defs);
 
 trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 ```
-Classification loss: 0.10118
-L2 Weight decay loss: 0.00222
-Training accuracy: 0.97
-Validation accuracy: 0.85
-Examples seen: 5000
+- Classification loss: 0.10118
+- L2 Weight decay loss: 0.00222
+- Training accuracy: 0.97
+- Validation accuracy: 0.85
+- Examples seen: 5000
 
 ```
 layer_defs = [];
@@ -96,11 +89,11 @@ net.makeLayers(layer_defs);
 
 trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 ```
-Classification loss: 0.18494
-L2 Weight decay loss: 0.00138
-Training accuracy: 0.95
-Validation accuracy: 0.85
-Examples seen: 5000
+- Classification loss: 0.18494
+- L2 Weight decay loss: 0.00138
+- Training accuracy: 0.95
+- Validation accuracy: 0.85
+- Examples seen: 5000
 
 
 **Filter Size**
@@ -120,11 +113,11 @@ net.makeLayers(layer_defs);
 trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 
 ```
-Classification loss: 0.21288
-L2 Weight decay loss: 0.0018
-Training accuracy: 0.92
-Validation accuracy: 0.86
-Examples seen: 5000
+- Classification loss: 0.21288
+- L2 Weight decay loss: 0.0018
+- Training accuracy: 0.92
+- Validation accuracy: 0.86
+- Examples seen: 5000
 
 ```
 layer_defs = [];
@@ -140,11 +133,11 @@ net.makeLayers(layer_defs);
 
 trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 ```
-Classification loss: 0.15546
-L2 Weight decay loss: 0.0018
-Training accuracy: 0.95
-Validation accuracy: 0.81
-Examples seen: 5000
+- Classification loss: 0.15546
+- L2 Weight decay loss: 0.0018
+- Training accuracy: 0.95
+- Validation accuracy: 0.81
+- Examples seen: 5000
 
 
 * Remove the pooling layers.  Does it impact the accuracy?
@@ -161,11 +154,11 @@ net.makeLayers(layer_defs);
 
 trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 ```
-Classification loss: 0.18351
-L2 Weight decay loss: 0.00248
-Training accuracy: 0.94
-Validation accuracy: 0.89
-Examples seen: 5002
+- Classification loss: 0.18351
+- L2 Weight decay loss: 0.00248
+- Training accuracy: 0.94
+- Validation accuracy: 0.89
+- Examples seen: 5002
 
 * Add one more conv layer.  Does it help with accuracy?
 
@@ -184,20 +177,20 @@ net.makeLayers(layer_defs);
 
 trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 ```
-Classification loss: 0.20302
-L2 Weight decay loss: 0.00182
-Training accuracy: 0.94
-Validation accuracy: 0.9
-Examples seen: 5000
+- Classification loss: 0.20302
+- L2 Weight decay loss: 0.00182
+- Training accuracy: 0.94
+- Validation accuracy: 0.9
+- Examples seen: 5000
 
 * Increase the batch size.  What impact does it have?
 
-Batch size: 100
-Classification loss: 0.40773
-L2 Weight decay loss: 0.00026
-Training accuracy: 0.9
-Validation accuracy: 0.79
-Examples seen: 5036
+- Batch size: 100
+- Classification loss: 0.40773
+- L2 Weight decay loss: 0.00026
+- Training accuracy: 0.9
+- Validation accuracy: 0.79
+- Examples seen: 5036
 
 * What is the best accuracy you can achieve? Are you over 99%? 99.5%?
 
