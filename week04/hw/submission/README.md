@@ -265,6 +265,16 @@ net.makeLayers(layer_defs);
 
 trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 ```
+- Classification loss: 0.22682
+- L2 Weight decay loss: 0.01981
+- Training accuracy: 0.94
+- Validation accuracy: 0.99
+- Examples seen: 26171
+- Learning rate: 0.01
+- Momentum: 0.9
+- Batch size: 20
+= Weight decay: 0.001
+ 
 
 
 #### 3. Build your own model in Keras
