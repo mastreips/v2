@@ -13,6 +13,7 @@ to the mounted fuse object.
 
 import paho.mqtt.client as mqtt
 import uuid
+import base64 
 
 # Function for creating the broker subscription service
 def on_connect(client, userdata, flags, rc):
@@ -24,11 +25,12 @@ def on_connect(client, userdata, flags, rc):
 # Function for creating the message writing service
 def on_message(client, userdata, msg):
 
-	print("Topic : ", msg.topic + "\n Image : " +  msg.payload)
+	png_img = base64.b64decode(msg.payload)
+        print("Topic : ", msg.topic)
 	i = str(uuid.uuid4())	# Assign GUID to each method
 	print(i)
 	f = open("/mnt/mybucket/output_%s.png" % i, "wb") #Write message as binary to convert back to image format
-	f.write(msg.payload)
+	f.write(png_img)
 	f.close()
 
 # Create subscription and writting client
