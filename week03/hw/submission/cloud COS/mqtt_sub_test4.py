@@ -13,6 +13,7 @@ recorded as unique records.
 
 import paho.mqtt.client as mqtt
 import uuid
+import base64
 import ibm_boto3
 from ibm_botocore.client import Config, ClientError
 
@@ -45,13 +46,14 @@ def on_connect(client, userdata, flags, rc):
 
 ## message writing function used to assign GUID and write message to IBM COS instance	
 def on_message(client, userdata, msg):
-
-	print("Topic : ", msg.topic + "\n Image : " +  msg.payload)
+	
+        png_img = base64.b64decode(msg.payload)
+        print("Topic : ", msg.topic)
 	i = str(uuid.uuid4())  # Create GUID for each message
 	print(i)
 
 	png_name = "output_%s.png" % i
-	resource.Bucket(name=bucket).put_object(Key=png_name, Body=msg.payload)  #use ibm_boto3 object to write to storage
+	resource.Bucket(name=bucket).put_object(Key=png_name, Body=png_img)  #use ibm_boto3 object to write to storage
 	print("wrote to bucket")
 
 ## Instantiate ibm_boto3 resource object
