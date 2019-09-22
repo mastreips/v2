@@ -54,7 +54,7 @@ trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_de
 - Weight decay: 0.001
  
 
-**Filter number**: (more better)
+**Filter number: (ANSWER:  more filters result in better model performance but require more compute and memory)**
 
 ```
 layer_defs = [];
@@ -97,7 +97,7 @@ trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_de
 - Examples seen: 5000
 
 
-**Filter Size**  (Bigger is worse) 
+**Filter Size (ANSWER: Bigger filters result in worse performance) **
 
 ```
 layer_defs = [];
@@ -141,7 +141,7 @@ trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_de
 - Examples seen: 5000
 
 
-**Remove the pooling layers.  Does it impact the accuracy? (should impact validation for overfitting)**
+**Remove the pooling layers.  Does it impact the accuracy? (ANSWER: Yes, less validation accuracy due to overfitting)**
 
 ```
 layer_defs = [];
@@ -184,7 +184,7 @@ trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_de
 - Validation accuracy: 0.9
 - Examples seen: 5000
 
-**Increase the batch size.  What impact does it have? (makes it worse)**
+**Increase the batch size.  What impact does it have? (ANSWER:  increasing batch size worsens performance)**
 
 - Batch size: 100
 - Classification loss: 0.40773
