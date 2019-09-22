@@ -27,7 +27,7 @@ The MNIST data set consists of 28x28 black and white images of hand written digi
 
 * Experiment with the number  and size of filters in each layer.  Does it improve the accuracy?
 
-**Baseline**: Training Accuracy: 0.95-0.99 / Validation Accuracy: 0.92-0.95
+**Baseline**: 
 ```
 layer_defs = [];
 layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
@@ -45,8 +45,8 @@ trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_de
 
 - Classification loss: 0.23719
 - L2 Weight decay loss: 0.00204
-- Training accuracy: 0.93
-- Validation accuracy: 0.91
+- **Training accuracy: 0.93**
+- **Validation accuracy: 0.91**
 - Examples seen: 10000
 - Learning rate: 0.01
 - Momentum: 0.9
@@ -70,41 +70,26 @@ net.makeLayers(layer_defs);
 
 trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 ```
-- Classification loss: 0.10118
-- L2 Weight decay loss: 0.00222
-- Training accuracy: 0.97
-- Validation accuracy: 0.85
-- Examples seen: 5000
+- Classification loss: 0.15785
+- L2 Weight decay loss: 0.00317
+- **Training accuracy: 0.96**
+- **Validation accuracy: 0.97**
+- Examples seen: 10000
+- Learning rate: 0.01
+- Momentum: 0.9
+- Batch size: 20
+- Weight decay: 0.001
+ 
 
-```
-layer_defs = [];
-layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
-layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
-layer_defs.push({type:'pool', sx:2, stride:2});
-layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'}); #changed filters to 8
-layer_defs.push({type:'pool', sx:3, stride:3});
-layer_defs.push({type:'softmax', num_classes:10});
+**Filter Size (ANSWER: Bigger filters result in worse performance)**
 
-net = new convnetjs.Net();
-net.makeLayers(layer_defs);
-
-trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
-```
-- Classification loss: 0.18494
-- L2 Weight decay loss: 0.00138
-- Training accuracy: 0.95
-- Validation accuracy: 0.85
-- Examples seen: 5000
-
-
-**Filter Size (ANSWER: Bigger filters result in worse performance) **
-
+sx:10 conv layers
 ```
 layer_defs = [];
 layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
 layer_defs.push({type:'conv', sx:10, filters:8, stride:1, pad:2, activation:'relu'}); #changes sx to 10
 layer_defs.push({type:'pool', sx:2, stride:2});
-layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'conv', sx:10, filters:16, stride:1, pad:2, activation:'relu'});
 layer_defs.push({type:'pool', sx:3, stride:3});
 layer_defs.push({type:'softmax', num_classes:10});
 
@@ -114,31 +99,12 @@ net.makeLayers(layer_defs);
 trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 
 ```
-- Classification loss: 0.21288
+- Classification loss: 0.30948
 - L2 Weight decay loss: 0.0018
-- Training accuracy: 0.92
-- Validation accuracy: 0.86
-- Examples seen: 5000
+- **Training accuracy: 0.92**
+- **Validation accuracy: 0.86**
+- Examples seen: 10000
 
-```
-layer_defs = [];
-layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
-layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
-layer_defs.push({type:'pool', sx:2, stride:2});
-layer_defs.push({type:'conv', sx:3, filters:16, stride:1, pad:2, activation:'relu'}); #change sx to 3
-layer_defs.push({type:'pool', sx:3, stride:3});
-layer_defs.push({type:'softmax', num_classes:10});
-
-net = new convnetjs.Net();
-net.makeLayers(layer_defs);
-
-trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
-```
-- Classification loss: 0.15546
-- L2 Weight decay loss: 0.0018
-- Training accuracy: 0.95
-- Validation accuracy: 0.81
-- Examples seen: 5000
 
 
 **Remove the pooling layers.  Does it impact the accuracy? (ANSWER: Yes, less validation accuracy due to overfitting)**
@@ -155,11 +121,11 @@ net.makeLayers(layer_defs);
 
 trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 ```
-- Classification loss: 0.18351
-- L2 Weight decay loss: 0.00248
-- Training accuracy: 0.94
-- Validation accuracy: 0.89
-- Examples seen: 5002
+- Classification loss: 0.27536
+- L2 Weight decay loss: 0.00347
+- **Training accuracy: 0.93**
+- **Validation accuracy: 0.88**
+- Examples seen: 10000
 
 **Add one more conv layer.  Does it help with accuracy? (adding layers can help to a point, but could overfit)**
 
@@ -170,7 +136,8 @@ layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu
 layer_defs.push({type:'pool', sx:2, stride:2});
 layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
 layer_defs.push({type:'pool', sx:3, stride:3});
-ayer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'}); ## added one more conv layer. 
+layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:3, stride:3});
 layer_defs.push({type:'softmax', num_classes:10});
 
 net = new convnetjs.Net();
@@ -178,20 +145,25 @@ net.makeLayers(layer_defs);
 
 trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 ```
-- Classification loss: 0.20302
-- L2 Weight decay loss: 0.00182
-- Training accuracy: 0.94
-- Validation accuracy: 0.9
-- Examples seen: 5000
+- Classification loss: 0.22814
+- L2 Weight decay loss: 0.00283
+- **Training accuracy: 0.91**
+- **Validation accuracy: 0.9**
+- Examples seen: 10000
 
 **Increase the batch size.  What impact does it have? (ANSWER:  increasing batch size worsens performance)**
 
-- Batch size: 100
-- Classification loss: 0.40773
-- L2 Weight decay loss: 0.00026
-- Training accuracy: 0.9
-- Validation accuracy: 0.79
-- Examples seen: 5036
+- Learning rate: 0.01
+- Momentum: 0.9
+- **Batch size: 100**
+- Weight decay: 0.001
+ 
+
+- Classification loss: 0.24889
+- L2 Weight decay loss: 0.00029
+- **Training accuracy: 0.93**
+- **Validation accuracy: 0.86**
+- Examples seen: 10000
 
 **What is the best accuracy you can achieve? Are you over 99%? 99.5%? (over 99.15% see attached ConvNetKeras.py)
 
@@ -213,7 +185,7 @@ trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_de
 - L2 Weight decay loss: 0.01981
 - Training accuracy: 0.94
 - **Validation accuracy: 0.99**
-- Examples seen: 26171
+- Examples seen: 10000
 - Learning rate: 0.01
 - Momentum: 0.9
 - Batch size: 20
