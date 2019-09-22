@@ -21,7 +21,7 @@ The MNIST data set consists of 28x28 black and white images of hand written digi
 - **convolutional layer** : stores the dot product of a sliding filter and the input matirx resulting in neuron outputs connected to local regions of the input (edges or blotches of color).  Convolves input volume with local filters of given size, at given stride. An optional amount of zero padding can also be added.
 - **relu layer (activiation layer)** - performs a fixed mathematical transformation f(x) = max(0,x) to introduce non-linearty in the model. 
 - **pooling layer** - downsampling layer that reduces the spacial size of the model (reduces paramaters) to prevent overfitting.
-- **dropout layer** - implements dropout to control overfitting 
+- **dropout layer** - implements dropout to control overfitting.  A defined percentage of nodes in the layer are randomly turned off. 
 - **fully connected (fc) layer** - combines the weights and interactions of the previous layers into outputs corresponding to classes in a classification problem.  Each node is connected to every node in the previous layer. 
 - **softmax layer** - converts output to be within the range (0:1) allowing the output to be interprested as a probability (confidence score). 
 
