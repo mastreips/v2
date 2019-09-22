@@ -141,7 +141,7 @@ trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_de
 - Examples seen: 5000
 
 
-* Remove the pooling layers.  Does it impact the accuracy? (should impact validation for overfitting)
+**Remove the pooling layers.  Does it impact the accuracy? (should impact validation for overfitting)**
 
 ```
 layer_defs = [];
@@ -161,7 +161,7 @@ trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_de
 - Validation accuracy: 0.89
 - Examples seen: 5002
 
-* Add one more conv layer.  Does it help with accuracy? (adding layers can help to a point, but could overfit)
+**Add one more conv layer.  Does it help with accuracy? (adding layers can help to a point, but could overfit)**
 
 ```
 layer_defs = [];
@@ -184,7 +184,7 @@ trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_de
 - Validation accuracy: 0.9
 - Examples seen: 5000
 
-* Increase the batch size.  What impact does it have? (makes it worse)
+**Increase the batch size.  What impact does it have? (makes it worse)**
 
 - Batch size: 100
 - Classification loss: 0.40773
@@ -193,63 +193,7 @@ trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_de
 - Validation accuracy: 0.79
 - Examples seen: 5036
 
-* What is the best accuracy you can achieve? Are you over 99%? 99.5%?
-
-```
-layer_defs = [];
-layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
-layer_defs.push({type:'conv', sx:3, filters:64, stride:1, pad:1, activation:'relu'});
-layer_defs.push({type:'pool', sx:2, stride:2});
-layer_defs.push({type:'conv', sx:3, filters:128, stride:1, pad:1, activation:'relu'});
-layer_defs.push({type:'pool', sx:2, stride:2});
-layer_defs.push({type:'softmax', num_classes:10});
-
-net = new convnetjs.Net();
-net.makeLayers(layer_defs);
-
-trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
-```
-
-Classification loss: 0.16703
-L2 Weight decay loss: 0.00673
-Training accuracy: 0.96
-Validation accuracy: 0.95
-Examples seen: 7941
-
-
-```
-layer_defs = [];
-layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
-layer_defs.push({type:'conv', sx:3, filters:32, stride:1, pad:1, activation:'relu'});
-layer_defs.push({type:'pool', sx:2, stride:2});
-layer_defs.push({type:'conv', sx:3, filters:64, stride:1, pad:1, activation:'relu'});
-layer_defs.push({type:'pool', sx:2, stride:2});
-layer_defs.push({type:'fc', num_neurons:128, activation:'relu', drop_prob: 0.5});
-layer_defs.push({type:'softmax', num_classes:10});
-
-net = new convnetjs.Net();
-net.makeLayers(layer_defs);
-
-trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
-```
-
-
-Classification loss: 0.33453
-L2 Weight decay loss: 0.00985
-Training accuracy: 0.87
-Validation accuracy: 0.99
-Examples seen: 6142
-Learning rate: 
-0.01
- 
-Momentum: 
-0.9
- 
-Batch size: 
-20
- 
-Weight decay: 
-0.001
+**What is the best accuracy you can achieve? Are you over 99%? 99.5%? (over 99.15% see attached ConvNetKeras.py)
 
 ```
 layer_defs = [];
@@ -268,7 +212,7 @@ trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_de
 - Classification loss: 0.22682
 - L2 Weight decay loss: 0.01981
 - Training accuracy: 0.94
-- Validation accuracy: 0.99
+- **Validation accuracy: 0.99**
 - Examples seen: 26171
 - Learning rate: 0.01
 - Momentum: 0.9
