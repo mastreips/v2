@@ -22,10 +22,10 @@ from ibm_botocore.client import Config, ClientError
 
 ## IBM Cloud Credentialing 
 credentials = {
-  "apikey": "Ww54W_HeKFvLpUVwOqQyi20nd6zP5RordBkG6dO1aiHW",
+  "apikey": "",
   "cos_hmac_keys": {
-    "access_key_id": "f234366a073c481ea7f9ab1c1bf95e65",
-    "secret_access_key": "20e5e655ad7ffc4076cc15e394b9fab3ab70be6f8e9228c0"
+    "access_key_id": "",
+    "secret_access_key": ""
   },
   "endpoints": "https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints",
   "iam_apikey_description": "Auto-generated for key f234366a-073c-481e-a7f9-ab1c1bf95e65",
