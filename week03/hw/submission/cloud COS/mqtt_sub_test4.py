@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 '''
 Sources:
 (1) cloud.ibm.com/docs/services/cloud-object-storage
@@ -19,10 +22,10 @@ from ibm_botocore.client import Config, ClientError
 
 ## IBM Cloud Credentialing 
 credentials = {
-  "apikey": "",
+  "apikey": "Ww54W_HeKFvLpUVwOqQyi20nd6zP5RordBkG6dO1aiHW",
   "cos_hmac_keys": {
-    "access_key_id": "",
-    "secret_access_key": ""
+    "access_key_id": "f234366a073c481ea7f9ab1c1bf95e65",
+    "secret_access_key": "20e5e655ad7ffc4076cc15e394b9fab3ab70be6f8e9228c0"
   },
   "endpoints": "https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints",
   "iam_apikey_description": "Auto-generated for key f234366a-073c-481e-a7f9-ab1c1bf95e65",
@@ -46,15 +49,19 @@ def on_connect(client, userdata, flags, rc):
 
 ## message writing function used to assign GUID and write message to IBM COS instance	
 def on_message(client, userdata, msg):
-	
-        png_img = base64.b64decode(msg.payload)
-        print("Topic : ", msg.topic)
+
+	png_img = base64.b64decode(msg.payload)
+	print("Topic : ", msg.topic)
 	i = str(uuid.uuid4())  # Create GUID for each message
 	print(i)
 
-	png_name = "output_%s.png" % i
+	png_name = "hw7_output_%s.png" % i
+	print(png_name)
 	resource.Bucket(name=bucket).put_object(Key=png_name, Body=png_img)  #use ibm_boto3 object to write to storage
 	print("wrote to bucket")
+
+def on_log(client, userdata, level, bug):
+	print("log: ", buf)
 
 ## Instantiate ibm_boto3 resource object
 resource = ibm_boto3.resource('s3', 
@@ -68,6 +75,7 @@ resource = ibm_boto3.resource('s3',
 client = mqtt.Client()
 client.on_connect =  on_connect
 client.on_message = on_message
-client.connect("172.18.0.1", 1883)		# Connect to the Docker Gateway Address
+client.connect("localhost", 1883)		# Connect to the Docker Gateway Address
 ##client.connect("172.18.0.2", 1883, 60)	# Connect to the Docker Subnet Address
+client.on_log = on_log
 client.loop_forever()
