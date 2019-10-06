@@ -10,17 +10,188 @@ Once you hit this page, the network starts running.
 * Review the network structure in the text box.  Can you name the layers and explain what they do?
 * Reduce the number of neurons in the conv layers and see how the network responds. Does it become less accurate?
 * Increase the number of neurons and layers and cause an overfit.  Make sure you understand the concept
-* Play with activation functions.. -- relu vs sigmoid vs tanh... Do you see a difference ? Relu is supposed to be faster but less accurate.
+* Play with acti vation functions.. -- relu vs sigmoid vs tanh... Do you see a difference ? Relu is supposed to be faster but less accurate.
 
-#### 2. ConvnetJS MNIST demo
+#### 2. ConvnetJS MN IST demo
 In this lab, we will look at the processing of the MNIST data set using ConvnetJS.  This demo uses this page: http://cs.stanford.edu/people/karpathy/convnetjs/demo/mnist.html
 The MNIST data set consists of 28x28 black and white images of hand written digits and the goal is to correctly classify them.  Once you load the page, the network starts running and you can see the loss and predictions change in real time.  Try the following:
 * Name all the layers in parameters in the network, make sure you understand what they do.
+
+- **input layer** : holds the vectorized pixel values of the image
+- **convolutional layer** : stores the dot product of a sliding filter and the input matirx resulting in neuron outputs connected to local regions of the input (edges or blotches of color).  Convolves input volume with local filters of given size, at given stride. An optional amount of zero padding can also be added.
+- **relu layer (activiation layer)** - performs a fixed mathematical transformation f(x) = max(0,x) to introduce non-linearty in the model. 
+- **pooling layer** - downsampling layer that reduces the spacial size of the model (reduces paramaters) to prevent overfitting.
+- **dropout layer** - implements dropout to control overfitting.  A defined percentage of nodes in the layer are randomly turned off. 
+- **fully connected (fc) layer** - combines the weights and interactions of the previous layers into outputs corresponding to classes in a classification problem.  Each node is connected to every node in the previous layer. 
+- **softmax layer** - converts output to be within the range (0:1) allowing the output to be interprested as a probability (confidence score). 
+
 * Experiment with the number  and size of filters in each layer.  Does it improve the accuracy?
-* Remove the pooling layers.  Does it impact the accuracy?
-* Add one more conv layer.  Does it help with accuracy?
-* Increase the batch size.  What impact does it have?
-* What is the best accuracy you can achieve? Are you over 99%? 99.5%?
+
+**Baseline**: 
+```
+layer_defs = [];
+layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
+layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:2, stride:2});
+layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:3, stride:3});
+layer_defs.push({type:'softmax', num_classes:10});
+
+net = new convnetjs.Net();
+net.makeLayers(layer_defs);
+
+trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
+```
+
+- Classification loss: 0.23719
+- L2 Weight decay loss: 0.00204
+- **Training accuracy: 0.93**
+- **Validation accuracy: 0.91**
+- Examples seen: 10000
+- Learning rate: 0.01
+- Momentum: 0.9
+- Batch size: 20
+- Weight decay: 0.001
+ 
+
+**Filter number: (ANSWER:  more filters result in better model performance but require more compute and memory)**
+
+```
+layer_defs = [];
+layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
+layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'}); #changed filters to 16
+layer_defs.push({type:'pool', sx:2, stride:2});
+layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:3, stride:3});
+layer_defs.push({type:'softmax', num_classes:10});
+
+net = new convnetjs.Net();
+net.makeLayers(layer_defs);
+
+trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
+```
+- Classification loss: 0.15785
+- L2 Weight decay loss: 0.00317
+- **Training accuracy: 0.96**
+- **Validation accuracy: 0.97**
+- Examples seen: 10000
+- Learning rate: 0.01
+- Momentum: 0.9
+- Batch size: 20
+- Weight decay: 0.001
+ 
+
+**Filter Size (ANSWER: Bigger filters result in worse performance)**
+
+sx:10 conv layers
+```
+layer_defs = [];
+layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
+layer_defs.push({type:'conv', sx:10, filters:8, stride:1, pad:2, activation:'relu'}); #changes sx to 10
+layer_defs.push({type:'pool', sx:2, stride:2});
+layer_defs.push({type:'conv', sx:10, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:3, stride:3});
+layer_defs.push({type:'softmax', num_classes:10});
+
+net = new convnetjs.Net();
+net.makeLayers(layer_defs);
+
+trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
+
+```
+- Classification loss: 0.30948
+- L2 Weight decay loss: 0.0018
+- **Training accuracy: 0.92**
+- **Validation accuracy: 0.86**
+- Examples seen: 10000
+
+
+
+**Remove the pooling layers.  Does it impact the accuracy? (ANSWER: Yes, less validation accuracy due to overfitting)**
+
+```
+layer_defs = [];
+layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
+layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'softmax', num_classes:10});
+
+net = new convnetjs.Net();
+net.makeLayers(layer_defs);
+
+trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
+```
+- Classification loss: 0.27536
+- L2 Weight decay loss: 0.00347
+- **Training accuracy: 0.93**
+- **Validation accuracy: 0.88**
+- Examples seen: 10000
+
+**Add one more conv layer.  Does it help with accuracy? (adding layers can help to a point, but could overfit)**
+
+```
+layer_defs = [];
+layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
+layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:2, stride:2});
+layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:3, stride:3});
+layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'pool', sx:3, stride:3});
+layer_defs.push({type:'softmax', num_classes:10});
+
+net = new convnetjs.Net();
+net.makeLayers(layer_defs);
+
+trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
+```
+- Classification loss: 0.22814
+- L2 Weight decay loss: 0.00283
+- **Training accuracy: 0.91**
+- **Validation accuracy: 0.9**
+- Examples seen: 10000
+
+**Increase the batch size.  What impact does it have? (ANSWER:  increasing batch size worsens performance)**
+
+- Learning rate: 0.01
+- Momentum: 0.9
+- **Batch size: 100**
+- Weight decay: 0.001
+ 
+
+- Classification loss: 0.24889
+- L2 Weight decay loss: 0.00029
+- **Training accuracy: 0.93**
+- **Validation accuracy: 0.86**
+- Examples seen: 10000
+
+**What is the best accuracy you can achieve? Are you over 99%? 99.5%? (over 99.15% see attached ConvNetKeras.py)
+
+```
+layer_defs = [];
+layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
+layer_defs.push({type:'conv', sx:3, filters:32, stride:1, pad:1, activation:'relu'});
+layer_defs.push({type:'conv', sx:3, filters:64, stride:1, pad:1, activation:'relu'});
+layer_defs.push({type:'pool', sx:2, stride:2, drop_prob: 0.25});
+layer_defs.push({type:'fc', num_neurons:128, activation:'relu', drop_prob: 0.5});
+layer_defs.push({type:'softmax', num_classes:10});
+
+net = new convnetjs.Net();
+net.makeLayers(layer_defs);
+
+trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
+```
+- Classification loss: 0.22682
+- L2 Weight decay loss: 0.01981
+- Training accuracy: 0.94
+- **Validation accuracy: 0.99**
+- Examples seen: 10000
+- Learning rate: 0.01
+- Momentum: 0.9
+- Batch size: 20
+= Weight decay: 0.001
+ 
+
 
 #### 3. Build your own model in Keras
 The [Conversation AI](https://conversationai.github.io/) team, a research initiative founded by [Jigsaw](https://jigsaw.google.com/) and Google (both a part of Alphabet) are working on tools to help improve online conversation. One area of focus is the study of negative online behaviors, like toxic comments (i.e. comments that are rude, disrespectful or otherwise likely to make someone leave a discussion).   
