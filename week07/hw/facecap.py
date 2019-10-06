@@ -63,6 +63,18 @@ tf_classes = tf_sess.graph.get_tensor_by_name('detection_classes:0')
 tf_num_detections = tf_sess.graph.get_tensor_by_name('num_detections:0')
 
 while(True):
+	# Find OpenCV version
+	(major_ver, minor_ver, subminor_ver) = (cv2.__version__).split('.')
+
+	# With webcam get(CV_CAP_PROP_FPS) does not work.
+	# Let's see for ourselves.
+	if int(major_ver)  < 3 :
+		fps = cap.get(cv2.cv.CV_CAP_PROP_FPS)
+		print("Frames per second using video.get(cv2.cv.CV_CAP_PROP_FPS): {0}".format(fps))
+	else :
+		fps = cap.get(cv2.CAP_PROP_FPS)
+		print("Frames per second using video.get(cv2.CAP_PROP_FPS) : {0}".format(fps))
+
 	ret, frame = cap.read()
 	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
