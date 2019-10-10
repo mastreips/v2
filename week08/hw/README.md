@@ -84,12 +84,12 @@ If you wish to experiment with the augmenation library, see https://github.com/c
 
 Questions: 
 1. Describe the following augmentations in your own words
--	Flip
-- 	Rotation
--	Scale
--	Crop
--	Translation
--	Noise
+-	**Flip** : rotate 180 degrees across x-axis (horizontal) or y-axis (vertical)
+- 	**Rotation** : rotate image around centerpoint by a specified amount of degrees (clockwise or counterclockwise). 
+-	**Scale** : increase/decrease the size of an image (e.g. its dimensions in pixels). 
+-	**Crop** : remove part of the image
+-	**Translation** : shift the x,y coordinates of the pixels in an image
+-	**Noise** : add random pixels artifacts to an image
 
 ## Part 3: Audio Annotation
 Take a look at and explore the audio annotation tool CrowdCurio https://github.com/CrowdCurio/audio-annotator)
