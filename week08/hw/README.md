@@ -97,6 +97,8 @@ Take a look at and explore the audio annotation tool CrowdCurio https://github.c
 Questions:
 1.	Image annotations require the coordinates of the objects and their classes; in your option, what is needed for an audio annotation? 
 
+Since audio waveform data is a timeseries, audio annotation requires a start timestamp, a stop timestamp and an associated label (classification).  It may also be possible to separate multiple, overlapping waveforms by channel or frequency, in which case the audio annotation would require the specific channel and/or frequency as filters. 
+
 ## What to turn  in
 ### Part 1
 1. A zip or tar file of your annoations.
