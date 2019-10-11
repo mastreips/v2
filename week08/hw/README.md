@@ -65,10 +65,10 @@ Steps (Assuming labelImg):
 
 
 Questions: 
-1.	In the time allowed, how many images did you annotate?  383
-2.	Home many instances of the Millennium Falcon did you annotate?  How many TIE Fighters?  Counter({'Tie Fighter': 312, 'Millennium Falcon': 312})
-3.	Based on this experience,  how would you handle the annotation of large image data set? Through a crowdsourcing service (mechanical turk, crowdflower)
-4.	Think about image augmentation?  How would augmentations such as flip, rotation, scale, cropping, and translation effect the annotations? The annotations are cartesian based so any augmentation that changes the cartesian coordinates of the bounding box will result in mislabeling.  You would have to do the augmentations before doing the augmentation to avoid this.
+1.	In the time allowed, how many images did you annotate?  **383**
+2.	Home many instances of the Millennium Falcon did you annotate?  How many TIE Fighters?  **Counter({'Tie Fighter': 312, 'Millennium Falcon': 312})**
+3.	Based on this experience,  how would you handle the annotation of large image data set? **Through a crowdsourcing service (mechanical turk, crowdflower)**
+4.	Think about image augmentation?  How would augmentations such as flip, rotation, scale, cropping, and translation effect the annotations? **The annotations are cartesian based so any augmentation that changes the cartesian coordinates of the bounding box will result in mislabeling.  You would have to do the augmentations before doing the augmentation to avoid this.**
 
 ## Part 2: Image Augmentation
 For part 2, you will need to install docker in a VM or your local workstation.  
@@ -97,7 +97,7 @@ Take a look at and explore the audio annotation tool CrowdCurio https://github.c
 Questions:
 1.	Image annotations require the coordinates of the objects and their classes; in your option, what is needed for an audio annotation? 
 
-Since audio waveform data is a timeseries, audio annotation requires a start timestamp, a stop timestamp and an associated label (classification).  It may also be possible to separate multiple, overlapping waveforms by channel or frequency, in which case the audio annotation would require the specific channel and/or frequency as filters. 
+**Since audio waveform data is a timeseries, audio annotation requires a start timestamp, a stop timestamp and an associated label (classification).  It may also be possible to separate multiple, overlapping waveforms by channel or frequency, in which case the audio annotation would require the specific channel and/or frequency as filters.** 
 
 ## What to turn  in
 ### Part 1
