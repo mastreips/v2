@@ -65,10 +65,10 @@ Steps (Assuming labelImg):
 
 
 Questions: 
-1.	In the time allowed, how many images did you annotate?  
-2.	Home many instances of the Millennium Falcon did you annotate?  How many TIE Fighters?
-3.	Based on this experience,  how would you handle the annotation of large image data set?
-4.	Think about image augmentation?  How would augmentations such as flip, rotation, scale, cropping, and translation effect the annotations?
+1.	In the time allowed, how many images did you annotate?  383
+2.	Home many instances of the Millennium Falcon did you annotate?  How many TIE Fighters?  Counter({'Tie Fighter': 312, 'Millennium Falcon': 312})
+3.	Based on this experience,  how would you handle the annotation of large image data set? Through a crowdsourcing service (mechanical turk, crowdflower)
+4.	Think about image augmentation?  How would augmentations such as flip, rotation, scale, cropping, and translation effect the annotations? The annotations are cartesian based so any augmentation that changes the cartesian coordinates of the bounding box will result in mislabeling.  You would have to do the augmentations before doing the augmentation to avoid this.
 
 ## Part 2: Image Augmentation
 For part 2, you will need to install docker in a VM or your local workstation.  
