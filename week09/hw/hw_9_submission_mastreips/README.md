@@ -30,3 +30,11 @@ utilized**
 ![GPU v100a](images/gpuv100a.png)
 
 ![GPU v100a](images/gpuv100b.png)
+
+Did you monitor network traffic (hint: apt install nmon ) ? Was network the bottleneck?
+
+**ANS: Yes. I did monitor the network.  The eth0 network was running around 200 Mb/s and the network is configured for 
+1000 Mb/s (1Gb/s). The network was not the bottleneck.  Given that all GPUs were running at 100% it is likely that the 
+GPUs where the bottleneck in this run.**
+
+![network](images/network.png)
