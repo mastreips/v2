@@ -20,3 +20,13 @@ If the model was overfitting we would see a divergence.**
 ![Model Eval Loss](images/TensorBoard_eval_loss.png)
 
 ![Model Train Loss](images/TensorBoard_train_loss.png)
+
+
+Were your GPUs fully utilized?
+
+**ANS: Yes. All Cores of Both GPUs at each node was 100%
+utilized**
+
+![GPU v100a](images/gpuv100a.png)
+
+![GPU v100a](images/gpuv100b.png)
