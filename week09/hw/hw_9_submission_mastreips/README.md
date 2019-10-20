@@ -42,7 +42,7 @@ Given that all GPUs were running at 100% it is likely that the GPUs where the bo
 Take a look at the plot of the learning rate and then check the config file. Can you explan this setting?
 
 **ANS: The learning rate policy has 8000 warmup steps before it will begin training with the set learning rate.
-During the warmup phase, the learning rate is slowly increased from zero in very small, linear increments or 0.0001**
+During the warmup phase, the learning rate is slowly increased from zero in very small, linear increments of 0.0001**
 
 ```angular2
   "lr_policy": transformer_policy,
