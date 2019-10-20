@@ -33,9 +33,9 @@ utilized**
 
 Did you monitor network traffic (hint: apt install nmon ) ? Was network the bottleneck?
 
-**ANS: Yes. I did monitor the network.  The eth0 network was running around 200 Mb/s and the network is configured for 
-1000 Mb/s (1Gb/s). The network was not the bottleneck.  Given that all GPUs were running at 100% it is likely that the 
-GPUs where the bottleneck in this run.**
+**ANS: Yes. I did monitor the network.  The eth0 network was receiving and transmitting around 200 Mb/s of data each way,
+or a total of 400Mb/s and the network is configured for 1000 Mb/s (1Gb/s). The network was not the bottleneck.  
+Given that all GPUs were running at 100% it is likely that the GPUs where the bottleneck in this run.**
 
 ![network](images/network.png)
 
@@ -126,4 +126,5 @@ time per step = 0:00:1.595
 
 How does that correlate with the observed network utilization between nodes?
 
-**ANS:**
+**ANS:The network was sending and receiving about 200 Mb/s each way, or 400 Mb/s. Each 1.6 second step means that about 
+700Mb/s of data are being processed for at each step.**
