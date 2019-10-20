@@ -12,5 +12,11 @@ had a BLEU score of 0.380.**
 
 ![Model BLEU Score 0.3691](images/TensorBoard_BLUE.png)
 
-asdf
+Were you overfitting?
 
+**ANS: No. Both Eval and Training Losses are consistently decreasing.
+If the model was overfitting we would see a divergence.**
+
+![Model Eval Loss](images/TensorBoard_eval_loss.png)
+
+![Model Train Loss](images/TensorBoard_train_loss.png)
