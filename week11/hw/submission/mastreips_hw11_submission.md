@@ -155,6 +155,7 @@ Link to Video - https://s3.us-east.cloud-object-storage.appdomain.cloud/mastreip
 
 ### Final-Run Statitics
 
+'''
 Epoch 20/20
 179001/179001 [==============================] - 41s 229us/step - loss: 
 233.9731 - mean_squared_error: 233.9731
@@ -163,3 +164,4 @@ reward:  57.294886964652704
 total rewards  109.16068801697253
 
 Total successes are:  449
+'''
